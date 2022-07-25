@@ -2,7 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+/* aggiungendo qui la path del model User e ritornando con ::all() (in php per accedere ai metodi statici si usa ::)*/
+use App\Models\User;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -16,4 +17,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+/* con questa rotta controllando su postman localhost:8000/api/user*/
+Route::get('user', function (){
+    return User::all();
+   /*  return User::where('email','mirko@gmail.it')->get(); */
+
 });

@@ -18,6 +18,7 @@ class CreateVariantsTable extends Migration
             $table->foreignId('product_id')->constrained()->onDelete('cascade');
             $table->string('image_primary')->nullable();
             $table->string('name');
+            $table->string('description');
             $table->float('price');
             $table->unsignedSmallInteger('quantity');
             $table->timestamps();

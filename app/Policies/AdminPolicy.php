@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Adresse;
+use App\Models\Admin;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class AdressePolicy
+class AdminPolicy
 {
     use HandlesAuthorization;
 
@@ -25,10 +25,10 @@ class AdressePolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Adresse  $adresse
+     * @param  \App\Models\Admin  $admin
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Adresse $adresse)
+    public function view(User $user, Admin $admin)
     {
         //
     }
@@ -48,10 +48,10 @@ class AdressePolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Adresse  $adresse
+     * @param  \App\Models\Admin  $admin
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Adresse $adresse)
+    public function update(User $user, Admin $admin)
     {
         //
     }
@@ -60,10 +60,10 @@ class AdressePolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Adresse  $adresse
+     * @param  \App\Models\Admin  $admin
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Adresse $adresse)
+    public function delete(User $user, Admin $admin)
     {
         //
     }
@@ -72,10 +72,10 @@ class AdressePolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Adresse  $adresse
+     * @param  \App\Models\Admin  $admin
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Adresse $adresse)
+    public function restore(User $user, Admin $admin)
     {
         //
     }
@@ -84,10 +84,10 @@ class AdressePolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Adresse  $adresse
+     * @param  \App\Models\Admin  $admin
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Adresse $adresse)
+    public function forceDelete(User $user, Admin $admin)
     {
         //
     }

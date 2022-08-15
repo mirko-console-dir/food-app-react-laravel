@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTaxesTable extends Migration
+class CreateAddressPurchaseTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateTaxesTable extends Migration
      */
     public function up()
     {
-        Schema::create('taxes', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('address_purchase', function (Blueprint $table) {
+            $table->foreignId('address_id')->constrained();
+            $table->foreignId('purchase_id')->constrained();
         });
     }
 
@@ -26,6 +26,6 @@ class CreateTaxesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('taxes');
+        Schema::dropIfExists('address_purchase');
     }
 }

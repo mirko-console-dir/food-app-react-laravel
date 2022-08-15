@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreAdresseRequest;
-use App\Http\Requests\UpdateAdresseRequest;
-use App\Models\Adresse;
+use App\Http\Requests\StoreAdminRequest;
+use App\Http\Requests\UpdateAdminRequest;
+use App\Models\Admin;
 
-class AdresseController extends Controller
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -31,10 +31,10 @@ class AdresseController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreAdresseRequest  $request
+     * @param  \App\Http\Requests\StoreAdminRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreAdresseRequest $request)
+    public function store(StoreAdminRequest $request)
     {
         //
     }
@@ -42,10 +42,10 @@ class AdresseController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Adresse  $adresse
+     * @param  \App\Models\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function show(Adresse $adresse)
+    public function show(Admin $admin)
     {
         //
     }
@@ -53,10 +53,10 @@ class AdresseController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Adresse  $adresse
+     * @param  \App\Models\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function edit(Adresse $adresse)
+    public function edit(Admin $admin)
     {
         //
     }
@@ -64,11 +64,11 @@ class AdresseController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateAdresseRequest  $request
-     * @param  \App\Models\Adresse  $adresse
+     * @param  \App\Http\Requests\UpdateAdminRequest  $request
+     * @param  \App\Models\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateAdresseRequest $request, Adresse $adresse)
+    public function update(UpdateAdminRequest $request, Admin $admin)
     {
         //
     }
@@ -76,10 +76,10 @@ class AdresseController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Adresse  $adresse
+     * @param  \App\Models\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Adresse $adresse)
+    public function destroy(Admin $admin)
     {
         //
     }

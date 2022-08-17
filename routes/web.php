@@ -22,10 +22,9 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::get('/admindashboard', function () {
-    return view('adminDashboard');
+    return view('admin/adminDashboard');
 })->middleware(['auth'])->name('adminDashboard');
 
-Route::resource('/products', 'ProductController')->middleware('auth:admin');
 //Route::resource('/variants', 'VariantController')->middleware('auth:admin');
 
 require __DIR__.'/auth.php';

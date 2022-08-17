@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
+use Database\Seeders\AdminSeeder;
+use Database\Seeders\CategorySeeder;
+use Database\Seeders\TaxSeeder;
 class DatabaseSeeder extends Seeder
 {
     /**

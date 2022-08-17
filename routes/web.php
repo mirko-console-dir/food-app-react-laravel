@@ -25,4 +25,7 @@ Route::get('/admindashboard', function () {
     return view('adminDashboard');
 })->middleware(['auth'])->name('adminDashboard');
 
+Route::resource('/products', 'ProductController')->middleware('auth:admin');
+//Route::resource('/variants', 'VariantController')->middleware('auth:admin');
+
 require __DIR__.'/auth.php';

@@ -4,6 +4,8 @@ use Illuminate\Database\Seeder;
 use Database\Seeders\CategorySeeder;
 use Database\Seeders\UserSeeder;
 use Database\Seeders\TaxSeeder;
+use Database\Seeders\ProductSeeder;
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -17,6 +19,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             CategorySeeder::class,
             TaxSeeder::class,
+            ProductSeeder::class,
         ]);
     }
 }

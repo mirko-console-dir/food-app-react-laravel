@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Database\Seeders\AdminSeeder;
 use Database\Seeders\CategorySeeder;
+use Database\Seeders\UserSeeder;
 use Database\Seeders\TaxSeeder;
 class DatabaseSeeder extends Seeder
 {
@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            AdminSeeder::class,
+            UserSeeder::class,
             CategorySeeder::class,
             TaxSeeder::class,
         ]);

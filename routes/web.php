@@ -22,8 +22,10 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::get('/admindashboard', function () {
-    return view('admin/adminDashboard');
-})->middleware(['auth'])->name('adminDashboard');
+    return view('admin/products');
+})->middleware(['auth'])->name('admindashboard');
+
+Route::resource('/products', 'ProductController')->middleware('auth:admin');
 
 //Route::resource('/variants', 'VariantController')->middleware('auth:admin');
 

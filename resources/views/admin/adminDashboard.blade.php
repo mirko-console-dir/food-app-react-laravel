@@ -19,15 +19,16 @@
                                         href="{{ route('admindashboard') }}">
                                         Dashboard
                                     </a>
-                                  {{--   <a class="nav-link {{ Route::is('admin.products*') || Route::is('admin.variants*') ? 'active' : '' }}"
-                                        href="{{ route('admin.products.index') }}">
-                                        Prodotti
-                                    </a> --}}
+                                    <a class="nav-link {{ Route::is('admindashboard.products*') || Route::is('admindashboard.variants*') ? 'active' : '' }}"
+                                    href="{{ route('products.index') }}"
+                                          >
+                                          Prodotti
+                                      </a> 
                                 </div>
                             </div>
                             <div class="col border-left">
                                 <div class="page">
-                                       {{-- <a href="{{ route('admin.products.create') }}" class="btn btn-lg btn-outline-success mb-1">Aggiungi prodotto</a> --}}
+                                      
                                        @yield('content')
                                 </div>
                             </div>

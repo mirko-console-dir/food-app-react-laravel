@@ -23,7 +23,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::get('/admindashboard', function () {
-    return view('admin/products');
+    return view('admin/admindashboard');
 })->middleware(['auth','admin'])->name('admindashboard');
 
 Route::prefix('admindashboard')->group(function () {

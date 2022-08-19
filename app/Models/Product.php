@@ -17,7 +17,7 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function iva()
+    public function tax()
     {
         return $this->belongsTo(Tax::class);
     }

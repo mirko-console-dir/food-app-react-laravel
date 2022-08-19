@@ -1,10 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreVariantRequest;
 use App\Http\Requests\UpdateVariantRequest;
 use App\Models\Variant;
+use App\Models\Product;
+
+
 
 class VariantController extends Controller
 {
@@ -23,9 +26,9 @@ class VariantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Product $product)
     {
-        //
+        return view('admin.variants.create', compact('product'));
     }
 
     /**
@@ -36,7 +39,24 @@ class VariantController extends Controller
      */
     public function store(StoreVariantRequest $request)
     {
-        //
+        $validated = $request->validate([
+            'image_primary' => 'image|nullable|max:1999',
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+            'product_id' => 'required',
+        ]);
+        if ($request->hasFile('image_primary')) {
+            Storage::putFileAs('public/images/variants', $request->file('image_primary'), $request->file('image_primary')->getClientOriginalName());
+
+            $validated['image_primary'] = $request->file('image_primary')->getClientOriginalName();
+        }
+
+
+        Variant::create($validated);
+
+        
+        return redirect()->route('products.show', ['product' => $request->product_id]);
     }
 
     /**
@@ -58,7 +78,7 @@ class VariantController extends Controller
      */
     public function edit(Variant $variant)
     {
-        //
+        return view('admin.variants.edit', compact('variant'));
     }
 
     /**
@@ -70,7 +90,24 @@ class VariantController extends Controller
      */
     public function update(UpdateVariantRequest $request, Variant $variant)
     {
-        //
+        $validated = $request->validate([
+            'image_primary' => 'image|nullable|max:1999',
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+            'product_id' => 'required',
+        ]);
+
+        if ($request->hasFile('image_primary')) {
+            Storage::putFileAs('public/images/products/variants', $request->file('image_primary'), $request->file('image_primary')->getClientOriginalName());
+
+            $validated['image_primary'] = $request->file('image_primary')->getClientOriginalName();
+        }
+
+        $variant->update($validated);
+
+       
+        return redirect()->route('products.show', ['product' => $request->product_id]);
     }
 
     /**
@@ -81,6 +118,7 @@ class VariantController extends Controller
      */
     public function destroy(Variant $variant)
     {
-        //
+        $variant->delete();
+        return back();
     }
 }

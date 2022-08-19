@@ -35,6 +35,7 @@
                 <p class="text-danger">Video not exist</p>
             @endif
 
+
             <div class="btn-group btn-group-lg" role="group">
             <a href="{{ route('products.edit', ['product' => $product->id]) }}" type="button"
                     class="btn btn-secondary">
@@ -51,10 +52,10 @@
                 @csrf
             </form>
         </div>
-       {{--  <div class="col-md border-left">
+       <div class="col-md border-left">
             <div>
                 <a class="btn btn-outline-primary"
-                    href="{{ route('admin.variants.create', ['product_id' => $product->id, 'product_name' => $product->name, 'unit' => $product->category->unit]) }}">
+                    href="{{ route('variants.create', ['product_id' => $product->id,'product_name' => $product->name]) }}">
                     Aggiungi una variante per questo prodotto
                 </a>
             </div>
@@ -67,26 +68,29 @@
                 <table class="table table-sm table-hover">
                     <thead>
                         <tr>
-                            <th scope="col">Peso</th>
+                            <th scope="col">Image</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Description</th>
                             <th scope="col">Prezzo unitario</th>
-                            <th scope="col">Quantità</th>
-                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($product->variants as $variant)
                             <tr>
-                                <td class="align-middle">{{ $variant->weight }}{{ $variant->product->category->unit }}
+                               {{--  <td class="align-middle"><img src="{{ asset('/storage/images/products/' . $variant->image_primary) }}" alt="Immagine principale">
+                                </td> --}}
+                                <td class="align-middle">{{ $variant->name }}
+                                </td>
+                                <td class="align-middle">{{ $variant->description }}
                                 </td>
                                 <td class="align-middle">{{ $variant->price }}€</td>
-                                <td class="align-middle">{{ $variant->quantity }} pezzi</td>
                                 <td class="btn-group btn-group-sm">
                                     <a class="btn btn-secondary" type="button"
-                                        href="{{ route('admin.variants.edit', ['variant' => $variant->id]) }}">
+                                        href="{{ route('variants.edit', ['variant' => $variant->id]) }}">
                                         Modifica
                                     </a>
                                     <form id="delete-variant" class="d-none"
-                                        action="{{ route('admin.variants.destroy', ['variant' => $variant->id]) }}"
+                                        action="{{ route('variants.destroy', ['variant' => $variant->id]) }}"
                                         method="POST">
                                         @method('DELETE')
                                         @csrf
@@ -95,14 +99,13 @@
                                         onclick="event.preventDefault(); document.getElementById('delete-variant').submit();">
                                         Elimina
                                     </a>
-
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
             @endif
-        </div>  --}}
+        </div>  
     </div>
 
 

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,9 +24,14 @@ Route::get('/dashboard', function () {
 
 Route::get('/admindashboard', function () {
     return view('admin/products');
-})->middleware(['auth'])->name('admindashboard');
+})->middleware(['auth','admin'])->name('admindashboard');
 
-Route::resource('/products', 'ProductController')->middleware('auth:admin');
+Route::prefix('admindashboard')->group(function () {
+   /* Laravel auto map: 'products' metodo index, 'product/1' edit */
+    Route::resource('/products', ProductController::class)->middleware(['auth','admin']);
+});
+
+
 
 //Route::resource('/variants', 'VariantController')->middleware('auth:admin');
 

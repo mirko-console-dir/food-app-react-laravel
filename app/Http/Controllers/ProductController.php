@@ -8,6 +8,10 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -25,7 +29,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.create-product');
     }
 
     /**
@@ -33,7 +37,7 @@ class ProductController extends Controller
      *
      * @param  \App\Http\Requests\StoreProductRequest  $request
      * @return \Illuminate\Http\Response
-     */
+     */ /* add product */
     public function store(StoreProductRequest $request)
     {
         //
@@ -58,7 +62,6 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
     }
 
     /**

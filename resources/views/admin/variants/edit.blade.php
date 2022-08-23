@@ -5,7 +5,7 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a
-                    href="{{ route('admin.products.show', ['product' => $variant->product->id]) }}">{{ ucfirst($variant->product->name) }}</a>
+                    href="{{ route('products.show', ['product' => $variant->product->id]) }}">{{ ucfirst($variant->product->name) }}</a>
             </li>
         </ol>
     </nav>
@@ -24,8 +24,8 @@
         </ul>
     @endif
 
-    <form class="shadow-sm rounded p-4" action="{{ route('admin.variants.update', ['variant' => $variant->id]) }}"
-        method="POST">
+    <form class="shadow-sm rounded p-4" action="{{ route('variants.update', ['variant' => $variant->id]) }}"
+        method="POST" enctype="multipart/form-data">
         @method('PUT')
         @csrf
         <div class="row">
@@ -33,7 +33,7 @@
                 <div class="form-group">
                     <label for="image_primary">Image</label>
                     <div class="input-group">
-                        <input type="text" step="0.01" class="form-control" name="image_primary" id="image_primary"
+                        <input type="file" class="form-control" name="image_primary" id="image_primary"
                             value="{{ $variant->image_primary }}" required>
                     </div>
                 </div>

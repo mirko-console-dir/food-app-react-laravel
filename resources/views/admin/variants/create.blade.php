@@ -22,14 +22,14 @@
             @endforeach
         </ul>
     @endif
-    <form class="shadow-sm rounded p-4" action="{{ route('variants.store') }}" method="POST">
+    <form class="shadow-sm rounded p-4" action="{{ route('variants.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="image_primary">Image</label>
                     <div class="input-group">
-                        <input type="file" class="form-control" name="image_primary" id="image_primary">
+                        <input type="file" name="image_primary" id="image_primary" class="form-control-file">
                     </div>
                 </div>
                 <div class="form-group">

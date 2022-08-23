@@ -40,14 +40,14 @@ class VariantController extends Controller
     public function store(StoreVariantRequest $request)
     {
         $validated = $request->validate([
-            'image_primary' => 'image|nullable|max:1999',
+        'image_primary' => 'image|nullable|max:1999',
             'name' => 'required',
             'description' => 'required',
             'price' => 'required',
             'product_id' => 'required',
         ]);
         if ($request->hasFile('image_primary')) {
-            Storage::putFileAs('public/images/variants', $request->file('image_primary'), $request->file('image_primary')->getClientOriginalName());
+            Storage::putFileAs('public/images/products/variants', $request->file('image_primary'), $request->file('image_primary')->getClientOriginalName());
 
             $validated['image_primary'] = $request->file('image_primary')->getClientOriginalName();
         }
@@ -97,7 +97,6 @@ class VariantController extends Controller
             'price' => 'required',
             'product_id' => 'required',
         ]);
-
         if ($request->hasFile('image_primary')) {
             Storage::putFileAs('public/images/products/variants', $request->file('image_primary'), $request->file('image_primary')->getClientOriginalName());
 

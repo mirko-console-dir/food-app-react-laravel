@@ -20,7 +20,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 /* con questa rotta controllando su postman localhost:8000/api/user*/
 Route::get('products', function (){
-    return Product::all();
+    $products = Product::with('category')->get();
+    return $products->load('variants', 'category');
    /*  return User::where('email','mirko@gmail.it')->get(); */
 
 });

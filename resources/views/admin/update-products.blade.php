@@ -1,4 +1,4 @@
-@extends('layouts.admin-layout')
+@extends('admin.admindashboard')
 
 @section('content')
     <h3 class="">Modifica {{ $product->name }}</h3>
@@ -10,7 +10,7 @@
             @endforeach
         </ul>
     @endif
-    <form class="shadow-sm rounded p-4" action="{{ route('admin.products.update', ['product' => $product->id]) }}"
+    <form class="shadow-sm rounded p-4" action="{{ route('products.update', ['product' => $product->id]) }}"
         method="POST" enctype="multipart/form-data">
         @method('PUT')
         @csrf
@@ -28,7 +28,7 @@
                 <div class="form-group">
                     <label for="category_id">Categoria</label>
                     <select class="form-control" name="category_id" id="category_id" required>
-                        @foreach (App\Models|Category::all() as $cat)
+                        @foreach (App\Models\Category::all() as $cat)
                             <option value="{{ $cat->id }}" {{ $cat->id == $product->category_id ? 'selected' : '' }}>
                                 {{ ucfirst($cat->name) }}</option>
                         @endforeach

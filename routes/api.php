@@ -26,7 +26,7 @@ Route::get('products', function (){
     return $products->load('category');
    /*  return User::where('email','mirko@gmail.it')->get(); */
 });
-Route::get('Variants', function (){
+Route::get('variants', function (){
     $variants = Variant::all();
     return $variants;
    /*  return User::where('email','mirko@gmail.it')->get(); */

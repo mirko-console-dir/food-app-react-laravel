@@ -1,29 +1,29 @@
 @extends('admin.admindashboard')
 @section('content')
-<a href="{{ route('products.create') }}" class="btn btn-lg btn-outline-success mb-1">Aggiungi prodotto</a>
+<a href="{{ route('variants.create') }}" class="btn btn-lg btn-outline-success mb-1">Add Variant</a>
     <table class="table table-sm table-hover table-borderless">
         <thead class="thead-dark">
             <tr>
                 <th scope="col">ID</th>
-                <th scope="col">Nome</th>
-                <th scope="col">Categoria</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
                 <th scope="col">Price</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (App\Models\Product::all() as $product)
+            @foreach (App\Models\Variant::all() as $variant)
                 <tr>
-                    <th scope="row">{{ $product->id }}</th>
-                    <td>{{ $product->name }}</td>
-                    <td>{{ $product->category->name }}</td> 
-                    <td>{{ $product->price }}</td> 
+                    <th scope="row">{{ $variant->id }}</th>
+                    <td>{{ $variant->name }}</td>
+                    <td>{{ $variant->description }}</td>
+                    <td>{{ $variant->price }}</td>
                     <td>
                         <div class="btn-group btn-group-lg" role="group">
-                          <a href="{{ route('products.show', ['product' => $product->id]) }}" class="btn btn-info">
+                          <a href="{{ route('variants.show', ['variant' => $variant->id]) }}" class="btn btn-info">
                             Vedi
                         </a>
-                        <a href="{{ route('products.edit', ['product' => $product->id]) }}" type="button"
+                        <a href="{{ route('variants.edit', ['variant' => $variant->id]) }}" type="button"
                             class="btn btn-secondary">
                             Modifica
                         </a> 
@@ -33,7 +33,7 @@
                     </a>
                         </div>
                         <form class="d-none" id="delete-form"
-                        action="{{ route('products.destroy', ['product' => $product->id]) }}" method="POST">
+                        action="{{ route('variants.destroy', ['variant' => $variant->id]) }}" method="POST">
                         @method('DELETE')
                         @csrf
                     </form>

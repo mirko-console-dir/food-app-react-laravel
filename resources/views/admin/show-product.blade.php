@@ -9,7 +9,7 @@
     <div class="row">
       <div class="col-md">
             @if ($product->image_primary)
-                <img src="{{ asset('/storage/images/products/' . $product->image_primary) }}" alt="Immagine principale">
+                <img class="w-50" src="{{ asset('/storage/images/products/' . $product->image_primary) }}" alt="Immagine principale">
             @else
                 <p class="text-danger">Immagine principale non presente</p>
             @endif
@@ -17,6 +17,7 @@
             <p>Name: {{ $product->name }}</p>
             <p>Description: {{ $product->description }}</p>
             <p>Category: {{ $product->category->name }}</p>
+            <p>Tax: {{ $product->price }}%</p>
             <p>Tax: {{ $product->tax->percentage }}%</p>
             <p>Product Code:
                 @if ($product->product_code)
@@ -52,60 +53,7 @@
                 @csrf
             </form>
         </div>
-       <div class="col-md border-left">
-            <div>
-                <a class="btn btn-outline-primary"
-                    href="{{ route('variants.create', ['product_id' => $product->id,'product_name' => $product->name]) }}">
-                    Aggiungi una variante per questo prodotto
-                </a>
-            </div>
-
-            @if (!count($product->variants))
-                <p class="my-3">Il prodotto non ha varianti</p>
-            @else
-                <h4 class="my-3">Le varianti di {{ $product->name }} ⬇️</h4>
-
-                <table class="table table-sm table-hover">
-                    <thead>
-                        <tr>
-                            <th scope="col">Image</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">Prezzo unitario</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($product->variants as $variant)
-                            <tr>
-                               {{--  <td class="align-middle"><img src="{{ asset('/storage/images/products/' . $variant->image_primary) }}" alt="Immagine principale">
-                                </td> --}}
-                                <td class="align-middle">{{ $variant->name }}
-                                </td>
-                                <td class="align-middle">{{ $variant->description }}
-                                </td>
-                                <td class="align-middle">{{ $variant->price }}€</td>
-                                <td class="btn-group btn-group-sm">
-                                    <a class="btn btn-secondary" type="button"
-                                        href="{{ route('variants.edit', ['variant' => $variant->id]) }}">
-                                        Modifica
-                                    </a>
-                                    <form id="delete-variant" class="d-none"
-                                        action="{{ route('variants.destroy', ['variant' => $variant->id]) }}"
-                                        method="POST">
-                                        @method('DELETE')
-                                        @csrf
-                                    </form>
-                                    <a class="btn btn-danger" type="button"
-                                        onclick="event.preventDefault(); document.getElementById('delete-variant').submit();">
-                                        Elimina
-                                    </a>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            @endif
-        </div>  
+       
     </div>
 
 

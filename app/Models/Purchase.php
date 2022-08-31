@@ -10,7 +10,10 @@ class Purchase extends Model
     {
         return $this->belongsToMany(Variant::class);
     }
-
+    public function products()
+    {
+        return $this->belongsToMany(Product::class);
+    }
     public function addresses()
     {
         return $this->belongsToMany(Address::class);

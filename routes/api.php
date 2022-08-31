@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 /* aggiungendo qui la path del model User e ritornando con ::all() (in php per accedere ai metodi statici si usa ::)*/
 use App\Models\Product;
+use App\Models\Variant;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -21,7 +23,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 /* con questa rotta controllando su postman localhost:8000/api/user*/
 Route::get('products', function (){
     $products = Product::with('category')->get();
-    return $products->load('variants', 'category');
+    return $products->load('category');
    /*  return User::where('email','mirko@gmail.it')->get(); */
-
+});
+Route::get('Variants', function (){
+    $variants = Variant::all();
+    return $variants;
+   /*  return User::where('email','mirko@gmail.it')->get(); */
 });

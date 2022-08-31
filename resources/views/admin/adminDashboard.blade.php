@@ -19,11 +19,16 @@
                                         href="{{ route('admindashboard') }}">
                                         Dashboard
                                     </a>
-                                    <a class="nav-link {{ Route::is('admindashboard.products*') || Route::is('admindashboard.variants*') ? 'active' : '' }}"
+                                    <a class="nav-link {{ Route::is('admindashboard.products*') }}"
                                     href="{{ route('products.index') }}"
                                           >
-                                          Prodotti
+                                          Products
                                       </a> 
+                                      <a class="nav-link {{ Route::is('admindashboard.variants*') ? 'active' : '' }}"
+                                      href="{{ route('variants.index') }}"
+                                            >
+                                            Variants
+                                        </a> 
                                 </div>
                             </div>
                             <div class="col border-left">

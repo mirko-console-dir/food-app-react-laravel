@@ -1,18 +1,10 @@
 @extends('admin.admindashboard')
 
 @section('content')
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <a
-                    href="{{ route('products.show', ['product' => $variant->product->id]) }}">{{ ucfirst($variant->product->name) }}</a>
-            </li>
-        </ol>
-    </nav>
 
     <h3 class="">
-        Modifica variante da per
-        {{ ucfirst($variant->product->name) }}
+        Edit Variant
+        {{ ucfirst($variant->name) }}
     </h3>
 
     {{-- tutti gli errori di validazione in un alert --}}
@@ -59,10 +51,14 @@
                             value="{{ $variant->price }}" required>
                     </div>
                 </div>
-                <div class="form-group d-none">
-                    <label for="product_id">ID prodotto collegato</label>
-                    <input type="number" class="form-control" name="product_id" id="product_id"
-                        value="{{ $variant->product_id }}">
+                <div class="form-group">
+                    <label for="tax_id">Tax</label>
+                    <select class="form-control" name="tax_id" id="tax_id" required>
+                        @foreach (App\Models\Tax::all() as $tax)
+                            <option value="{{ $tax->id }}" {{ $tax->id == $variant->tax_id ? 'selected' : '' }}>
+                                {{ $tax->percentage }}%</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
         </div>

@@ -13,9 +13,10 @@ class CreatePurchaseVariantTable extends Migration
      */
     public function up()
     {
-        Schema::create('purchase_variant', function (Blueprint $table) {
+        Schema::create('purchase_variant_product', function (Blueprint $table) {
             $table->foreignId('purchase_id')->constrained();
             $table->foreignId('variant_id')->constrained();
+            $table->foreignId('product_id')->constrained();
         });
     }
 
@@ -26,6 +27,6 @@ class CreatePurchaseVariantTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('purchase_variant');
+        Schema::dropIfExists('purchase_variant_product');
     }
 }

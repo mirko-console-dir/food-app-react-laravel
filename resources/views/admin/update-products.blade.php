@@ -35,6 +35,13 @@
                     </select>
                 </div>
                 <div class="form-group">
+                    <label for="price">Price</label>
+                    <div class="input-group">
+                        <input type="number" class="form-control" name="price" id="price"
+                            value="{{ $product->price }}" required>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label for="tax_id">Tax</label>
                     <select class="form-control" name="tax_id" id="tax_id" required>
                         @foreach (App\Models\Tax::all() as $tax)
@@ -78,7 +85,7 @@
                     <input type="file" name="image_ter" id="image_ter" class="form-control-file">
                 </div>
                 <div class="form-group">
-                    <label class="font-weight-bold" for="video_mp4">Analisi prodotto</label>
+                    <label class="font-weight-bold" for="video_mp4">Video product</label>
                     @if ($product->video_mp4)
                         <small class="text-success">presente</small>
                     @else

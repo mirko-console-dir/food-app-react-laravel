@@ -17,7 +17,7 @@ class CategorySeeder extends Seeder
         $categories = [
             ['pizza'],
             ['focaccia'],
-            ['create your own'],
+            ['chef choice'],
         ];
 
         foreach ($categories as $cat) {

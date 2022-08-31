@@ -31,6 +31,15 @@
                     </select>
                 </div>
                 <div class="form-group">
+                    <label for="price">Price</label>
+                    <div class="input-group">
+                        <input type="number" class="form-control" name="price" id="price" step="0.01" required>
+                        <div class="input-group-append">
+                            <span class="input-group-text">€</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label for="tax_id">Tax</label>
                     <select class="form-control" name="tax_id" id="tax_id" required>
                         @foreach (App\Models\Tax::all() as $tax)

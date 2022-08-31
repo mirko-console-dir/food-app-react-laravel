@@ -1,19 +1,6 @@
 @extends('admin.admindashboard')
 
 @section('content')
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <a
-                    href="{{ route('products.show', ['product' => $_GET['product_id']]) }}">{{ ucfirst($_GET['product_name']) }}</a>
-            </li>
-        </ol>
-    </nav>
-    <h3 class="">Nuova variante per {{ strtoupper($_GET['product_name']) }} (id prodotto: {{ $_GET['product_id'] }})
-    </h3>
-    {{-- test --}}
-    {{-- {{ dd($_GET['product_id'], $_GET['product_name']) }} --}}
-
     {{-- tutti gli errori di validazione in un alert --}}
     @if ($errors->any())
         <ul class="alert alert-danger" role="alert">
@@ -33,15 +20,15 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="name">Nome *</label>
+                    <label for="name">Name *</label>
                     <input type="text" class="form-control" name="name" id="name" required>
                 </div>
                 <div class="form-group">
-                    <label for="description">Descrizione *</label>
+                    <label for="description">Description *</label>
                     <textarea name="description" id="description" class="form-control" required></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="price">Prezzo</label>
+                    <label for="price">Price</label>
                     <div class="input-group">
                         <input type="number" class="form-control" name="price" id="price" step="0.01" required>
                         <div class="input-group-append">
@@ -49,15 +36,18 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group d-none" style="display:none">
-                    <label for="product_id">ID prodotto collegato</label>
-                    <input type="number" class="form-control" name="product_id" id="product_id"
-                        value="{{ $_GET['product_id'] }}">
+                <div class="form-group">
+                    <label for="tax_id">Tax</label>
+                    <select class="form-control" name="tax_id" id="tax_id" required>
+                        @foreach (App\Models\Tax::all() as $tax)
+                            <option value="{{ $tax->id }}">{{ ucfirst($tax->percentage) }} %</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
         </div>
         <div class="form-group">
-            <button type="submit" class="btn btn-lg btn-primary">Inserisci variante</button>
+            <button type="submit" class="btn btn-lg btn-primary">Insert variant</button>
         </div>
     </form>
 @endsection

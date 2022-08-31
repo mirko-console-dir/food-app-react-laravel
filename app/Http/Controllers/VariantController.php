@@ -18,7 +18,7 @@ class VariantController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.variants.variants');
     }
 
     /**
@@ -40,11 +40,11 @@ class VariantController extends Controller
     public function store(StoreVariantRequest $request)
     {
         $validated = $request->validate([
-        'image_primary' => 'image|nullable|max:1999',
             'name' => 'required',
+            'image_primary' => 'image|nullable|max:1999',
             'description' => 'required',
             'price' => 'required',
-            'product_id' => 'required',
+            'tax_id' => 'required',
         ]);
         if ($request->hasFile('image_primary')) {
             Storage::putFileAs('public/images/products/variants', $request->file('image_primary'), $request->file('image_primary')->getClientOriginalName());
@@ -55,8 +55,7 @@ class VariantController extends Controller
 
         Variant::create($validated);
 
-        
-        return redirect()->route('products.show', ['product' => $request->product_id]);
+        return redirect()->route('variants.index');
     }
 
     /**
@@ -67,7 +66,7 @@ class VariantController extends Controller
      */
     public function show(Variant $variant)
     {
-        //
+        return view('admin.variants.show-variant', compact('variant'));
     }
 
     /**
@@ -95,7 +94,7 @@ class VariantController extends Controller
             'name' => 'required',
             'description' => 'required',
             'price' => 'required',
-            'product_id' => 'required',
+            'tax_id' => 'required',
         ]);
         if ($request->hasFile('image_primary')) {
             Storage::putFileAs('public/images/products/variants', $request->file('image_primary'), $request->file('image_primary')->getClientOriginalName());
@@ -104,9 +103,8 @@ class VariantController extends Controller
         }
 
         $variant->update($validated);
-
        
-        return redirect()->route('products.show', ['product' => $request->product_id]);
+        return redirect()->route('variants.index');
     }
 
     /**
@@ -118,6 +116,7 @@ class VariantController extends Controller
     public function destroy(Variant $variant)
     {
         $variant->delete();
-        return back();
+        return redirect()->route('variants.index');
+
     }
 }

@@ -31,6 +31,8 @@ Route::get('/admindashboard', function () {
 Route::prefix('admindashboard')->group(function () {
    /* Laravel auto map: 'products' metodo index, 'product/1' edit */
     Route::resource('products', ProductController::class)->middleware(['auth','admin']);
+    Route::post('/purchase', [PurchaseController::class, 'store'])->name('purchase');
+
 
      // variants
      Route::resource('variants', VariantController::class)->middleware('auth','admin');

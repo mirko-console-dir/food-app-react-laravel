@@ -16,6 +16,6 @@ class Purchase extends Model
     }
     public function addresses()
     {
-        return $this->belongsToMany(Address::class);
+        return $this->belongsToMany(Addresse::class);
     }
 }

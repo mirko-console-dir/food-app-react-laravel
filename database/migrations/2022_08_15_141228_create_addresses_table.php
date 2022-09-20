@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -15,6 +15,13 @@ class CreateAddressesTable extends Migration
     {
         Schema::create('addresses', function (Blueprint $table) {
             $table->id();
+            $table->string('street');
+            $table->string('town');
+            $table->string('state');
+            $table->unsignedMediumInteger('cap');
+            $table->string('note')->nullable();
+            $table->string('type');
+            $table->string('other')->nullable();
             $table->timestamps();
         });
     }

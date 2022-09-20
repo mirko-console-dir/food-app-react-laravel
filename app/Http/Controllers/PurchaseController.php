@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePurchaseRequest;
 use App\Http\Requests\UpdatePurchaseRequest;
 use App\Models\Purchase;
-use App\Models\Addresse;
+use App\Models\Address;
 
 class PurchaseController extends Controller
 {
@@ -68,7 +68,7 @@ class PurchaseController extends Controller
         $purchase = Purchase::latest()->first();
 
         // nuovi indirizzi: uno per spedizione...
-        $newShippingAddress = new Addresse();
+        $newShippingAddress = new Address();
         $newShippingAddress->via = $validated['sped_via'];
         $newShippingAddress->city = $validated['sped_city'];
         $newShippingAddress->province = $validated['sped_province'];
@@ -76,13 +76,13 @@ class PurchaseController extends Controller
         $newShippingAddress->note = $validated['note'];
         $newShippingAddress->type = 'spedizione';
         $newShippingAddress->save();
-        $shippingAdd = Addresse::orderBy('id', 'desc')->first();
+        $shippingAdd = Address::orderBy('id', 'desc')->first();
 
         // 'attacco'
         $purchase->addresses()->attach($shippingAdd);
 
         // ... e uno per fatturazione
-        $newBillingAddress = new Addresse();
+        $newBillingAddress = new Address();
         $newBillingAddress->via = $validated['fatt_via'];
         if(empty($newBillingAddress->via)){
          $newBillingAddress->via = $validated['sped_via'];
@@ -101,7 +101,7 @@ class PurchaseController extends Controller
         }
         $newBillingAddress->type = 'fatturazione';
         $newBillingAddress->save();
-        $billingAdd = Addresse::orderBy('id', 'desc')->first();
+        $billingAdd = Address::orderBy('id', 'desc')->first();
 
         // 'attacco'
         $purchase->addresses()->attach($billingAdd);

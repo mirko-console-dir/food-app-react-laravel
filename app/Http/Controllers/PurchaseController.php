@@ -42,26 +42,25 @@ class PurchaseController extends Controller
             'lname' => 'required',
             'email' => 'required',
             'phone' => 'required',
-            'fiscal_code' => 'required',
             'amount' => 'required',
             'user_id' => 'nullable',
-            'sped_via' => 'required',
-            'sped_city' => 'required',
-            'sped_province' => 'required',
-            'sped_cap' => 'required',
+            'delivery_street' => 'required',
+            'delivery_town' => 'required',
+            'delivery_state' => 'required',
+            'delivery_post_code' => 'required',
             'note' => 'nullable',
-            'fatt_via' => 'nullable',
-            'fatt_city' => 'nullable',
-            'fatt_province' => 'nullable',
-            'fatt_cap' => 'nullable',
+            'bill_street' => 'nullable',
+            'bill_town' => 'nullable',
+            'bill_state' => 'required',
+            'bill_post_code' => 'nullable',
         ]);
         // nuovo purchase
         $newPurchase = new Purchase();
         $newPurchase->fullname = $validated['fname'] . ' ' . $validated['lname'];
         $newPurchase->email = $validated['email'];
         $newPurchase->phone = $validated['phone'];
+        $newPurchase->cart_json = $request->cart;
         $newPurchase->amount = $validated['amount'];
-        $newPurchase->fiscal_code = $validated['fiscal_code'];
         $newPurchase->user_id = $validated['user_id'];
         $newPurchase->save();
         // salvo il nuovo purchase in una variabile
@@ -69,12 +68,12 @@ class PurchaseController extends Controller
 
         // nuovi indirizzi: uno per spedizione...
         $newShippingAddress = new Address();
-        $newShippingAddress->via = $validated['sped_via'];
-        $newShippingAddress->city = $validated['sped_city'];
-        $newShippingAddress->province = $validated['sped_province'];
-        $newShippingAddress->cap = $validated['sped_cap'];
+        $newShippingAddress->street = $validated['delivery_street'];
+        $newShippingAddress->town = $validated['delivery_town'];
+        $newShippingAddress->state = $validated['delivery_state'];
+        $newShippingAddress->post_code = $validated['delivery_post_code'];
         $newShippingAddress->note = $validated['note'];
-        $newShippingAddress->type = 'spedizione';
+        $newShippingAddress->type = 'delivery';
         $newShippingAddress->save();
         $shippingAdd = Address::orderBy('id', 'desc')->first();
 
@@ -83,23 +82,23 @@ class PurchaseController extends Controller
 
         // ... e uno per fatturazione
         $newBillingAddress = new Address();
-        $newBillingAddress->via = $validated['fatt_via'];
-        if(empty($newBillingAddress->via)){
-         $newBillingAddress->via = $validated['sped_via'];
+        $newBillingAddress->street = $validated['bill_street'];
+        if(empty($newBillingAddress->street)){
+         $newBillingAddress->street = $validated['delivery_via'];
         }
-        $newBillingAddress->city = $validated['fatt_city'];
-        if(empty($newBillingAddress->city)){
-         $newBillingAddress->city = $validated['sped_city'];
+        $newBillingAddress->town = $validated['bill_town'];
+        if(empty($newBillingAddress->town)){
+         $newBillingAddress->town = $validated['delivery_town'];
         }
-        $newBillingAddress->province = $validated['fatt_province'];
-        if(empty($newBillingAddress->province)){
-         $newBillingAddress->province = $validated['sped_province'];
+        $newBillingAddress->state = $validated['bill_state'];
+        if(empty($newBillingAddress->state)){
+         $newBillingAddress->state = $validated['delivery_state'];
         }
-        $newBillingAddress->cap = $validated['fatt_cap'];
-        if(empty($newBillingAddress->cap)){
-         $newBillingAddress->cap = $validated['sped_cap'];
+        $newBillingAddress->cap = $validated['bill_post_code'];
+        if(empty($newBillingAddress->post_code)){
+         $newBillingAddress->post_code = $validated['delivery_post_code'];
         }
-        $newBillingAddress->type = 'fatturazione';
+        $newBillingAddress->type = 'bill';
         $newBillingAddress->save();
         $billingAdd = Address::orderBy('id', 'desc')->first();
 

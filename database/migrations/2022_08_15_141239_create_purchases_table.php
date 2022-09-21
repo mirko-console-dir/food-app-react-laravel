@@ -16,12 +16,11 @@ class CreatePurchasesTable extends Migration
         Schema::create('purchases', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained();
-            $table->float('amount');
             $table->string('fullname');
-            $table->string('phone');
             $table->string('email');
-            $table->string('fiscal_code');
+            $table->string('phone');
             $table->text('cart_json');
+            $table->float('amount');
             $table->text('order_code')->nullable();
             $table->timestamps();
         });

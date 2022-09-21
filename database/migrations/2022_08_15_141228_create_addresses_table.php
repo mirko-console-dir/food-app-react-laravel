@@ -18,7 +18,7 @@ class CreateAddressesTable extends Migration
             $table->string('street');
             $table->string('town');
             $table->string('state');
-            $table->unsignedMediumInteger('cap');
+            $table->unsignedMediumInteger('post_code');
             $table->string('note')->nullable();
             $table->string('type');
             $table->string('other')->nullable();

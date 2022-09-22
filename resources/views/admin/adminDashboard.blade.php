@@ -29,6 +29,11 @@
                                             >
                                             Variants
                                         </a> 
+                                        <a class="nav-link {{ Route::is('admindashboard.purchases*') ? 'active' : '' }}"
+                                        href="{{ route('purchases.index') }}"
+                                              >
+                                              Purchases
+                                          </a> 
                                 </div>
                             </div>
                             <div class="col border-left">

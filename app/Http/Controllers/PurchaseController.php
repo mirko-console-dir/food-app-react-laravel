@@ -9,14 +9,18 @@ use App\Models\Address;
 
 class PurchaseController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
+    { /* ::latest()->get() */
+        return view('admin.purchases');
     }
 
     /**

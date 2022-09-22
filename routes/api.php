@@ -5,7 +5,8 @@ use Illuminate\Support\Facades\Route;
 /* aggiungendo qui la path del model User e ritornando con ::all() (in php per accedere ai metodi statici si usa ::)*/
 use App\Models\Product;
 use App\Models\Variant;
-
+use App\Models\Purchase;
+use App\Http\Controllers\PurchaseController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -31,3 +32,11 @@ Route::get('variants', function (){
     return $variants;
    /*  return User::where('email','mirko@gmail.it')->get(); */
 });
+
+Route::get('/purchases', function () {
+    $purchases = Purchase::all();
+    return $purchases;
+});
+Route::post('/purchase', [PurchaseController::class, 'store'])->name('purchase');
+
+  

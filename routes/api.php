@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Product;
 use App\Models\Variant;
 use App\Models\Purchase;
-use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\GuestOrderController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -36,7 +36,8 @@ Route::get('variants', function (){
 Route::get('/purchases', function () {
     $purchases = Purchase::all();
     return $purchases;
-});
-Route::post('/purchase', [PurchaseController::class, 'store'])->name('purchase');
+}); 
+Route::post('/purchase', [GuestOrderController::class, 'store']);
+
 
   

@@ -18,13 +18,15 @@ class PurchaseSeeder extends Seeder
     {
         //
         $newPurchase = new Purchase();
+        $newPurchase->id = 1 ;
         $newPurchase->fullname = "Andy Samson" ;
         $newPurchase->email = "andy@mail.com";
         $newPurchase->phone = "+61 212313";
         $newPurchase->cart_json = "";
         $newPurchase->amount = 21;
+        $newPurchase->save();
 
-       /*  $newShippingAddress = new Address();
+       $newShippingAddress = new Address();
         $newShippingAddress->street = "15 Bennet st";
         $newShippingAddress->town = "Bondi";
         $newShippingAddress->state = "NSW";
@@ -34,16 +36,15 @@ class PurchaseSeeder extends Seeder
         $newShippingAddress->save();
         $shippingAdd = Address::orderBy('id', 'desc')->first();
      
-        $newPurchase->addresses()->attach($shippingAdd); */
+        $newPurchase->addresses()->attach($shippingAdd); 
 
-     /*    $newBillingAddress = new Address();
+     $newBillingAddress = new Address();
         $newBillingAddress->street = "15 Bennet st";
         $newBillingAddress->town = "Bondi";
         $newBillingAddress->state = "NSW";
         $newBillingAddress->post_code = "2000";
+        $newShippingAddress->type = 'bill';
         $billingAdd = Address::orderBy('id', 'desc')->first();
-        $newPurchase->addresses()->attach($billingAdd); */
-        
-        $newPurchase->save();
+        $newPurchase->addresses()->attach($billingAdd); 
     }
 }

@@ -1,35 +1,40 @@
 <?php
 
 namespace App\Http\Controllers;
-use illuminate\Contracts\Support\Jsonable;
-use App\Http\Requests\StorePurchaseRequest;
-use App\Http\Requests\UpdatePurchaseRequest;
+
+use Illuminate\Http\Request;
 use App\Models\Purchase;
 use App\Models\Address;
 
-class PurchaseController extends Controller
+class GuestOrderController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('admin');
-    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
-    { /* ::latest()->get() */
-        return view('admin.purchases.purchases');
+    {
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StorePurchaseRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorePurchaseRequest $request)
+    public function store(Request $request)
     {
         $newPurchase = new Purchase();
         $newPurchase->fullname = "Andy Samson" ;
@@ -66,22 +71,21 @@ class PurchaseController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Purchase  $purchase
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Purchase $purchase)
+    public function show($id)
     {
         //
-        return view('admin.purchases.purchase',compact('purchase'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Purchase  $purchase
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Purchase $purchase)
+    public function edit($id)
     {
         //
     }
@@ -89,11 +93,11 @@ class PurchaseController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdatePurchaseRequest  $request
-     * @param  \App\Models\Purchase  $purchase
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePurchaseRequest $request, Purchase $purchase)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -101,19 +105,11 @@ class PurchaseController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Purchase  $purchase
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Purchase $purchase)
+    public function destroy($id)
     {
         //
-    }
-//traversable si può far foreach dei dati
-    private function getResult(Jsonable $data, $success = true, $message ='') { 
-        return  [
-            'data' => $data,
-            'success'=> $success,
-            'messagee'=> $message,
-        ];
     }
 }

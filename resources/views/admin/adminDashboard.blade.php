@@ -38,7 +38,6 @@
                             </div>
                             <div class="col border-left">
                                 <div class="page">
-                                      
                                        @yield('content')
                                 </div>
                             </div>

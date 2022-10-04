@@ -7,5 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Address extends Model
 {
-    /* use HasFactory; */
+    public function purchases()
+    {
+        return $this->belongsToMany(Purchase::class);
+    }
 }

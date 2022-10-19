@@ -8,7 +8,6 @@
                 <th scope="col">Name</th>
                 <th scope="col">Email</th>
                 <th scope="col">Phone</th>
-                <th scope="col">Cart</th>
                 <th scope="col">Amount</th>
                 <th scope="col">Address delivery</th>
                 <th scope="col">Address town delivery</th>
@@ -19,18 +18,23 @@
             </tr>
         </thead>
         <tbody>
+
             @foreach (App\Models\Purchase::all() as $purchase)
                 <tr>
                     <th scope="row">{{ $purchase->id }}</th>
+                    {{-- DELIVERY DATA --}}
                     <td>{{ $purchase->fullname }}</td>
                     <td>{{ $purchase->email }}</td> 
                     <td>{{ $purchase->phone }}</td> 
-                    <td>{{ $purchase->cart_json }}</td> 
                     <td>{{ $purchase->amount }}</td> 
-                    <td>{{ $purchase->delivery_address }}</td> 
-                    <td>{{ $purchase->delivery_town }} {{ $purchase->delivery_state }} {{ $purchase->delivery_post_code }}</td> 
-                    <td>{{ $purchase->bill_address }}</td> 
-                    <td>{{ $purchase->bill_town }} {{ $purchase->bill_state }} {{ $purchase->bill_post_code }}</td> 
+                    <td>{{ $purchase->addresses[0]->street}}</td> 
+                    <td>{{ $purchase->addresses[0]->delivery_town }} {{ $purchase->addresses[0]->state }} {{ $purchase->addresses[0]->post_code }}</td> 
+                    {{-- /DELIVERY DATA --}}
+
+                    {{-- BILL DATA --}}
+                    <td>{{ $purchase->addresses[1]->street }}</td> 
+                    <td>{{ $purchase->addresses[1]->town }} {{ $purchase->addresses[1]->state }} {{ $purchase->addresses[1]->post_code }}</td> 
+                    {{-- /BILL DATA --}}
                     <td>
                         <div class="btn-group btn-group-lg" role="group">
                           <a href="{{ route('purchases.show', ['purchase' => $purchase->id]) }}" class="btn btn-info">

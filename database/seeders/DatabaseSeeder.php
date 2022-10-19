@@ -22,7 +22,6 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             TaxSeeder::class,
             //PurchaseSeeder::class,
-
             //ProductSeeder::class,
         ]);
     }

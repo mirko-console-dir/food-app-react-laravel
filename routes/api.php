@@ -32,9 +32,19 @@ Route::get('variants', function (){
     return $variants;
    /*  return User::where('email','mirko@gmail.it')->get(); */
 });
+/* route to delete one time is finish the order this is only to chek the order for server comunication*/
+Route::get('/purchases', function () {
+    $purchases = Purchase::latest()->first();
+    return $purchases;
+});
 
 Route::get('/purchases', function () {
-    $purchases = Purchase::all();
+    $purchases = Purchase::latest()->first();
+    return $purchases;
+}); 
+/* route to delete one time is finish the order this is only to chek the order for server comunication */
+Route::get('/guestpurchase', function () {
+    $purchases = Purchase::latest()->first();
     return $purchases;
 }); 
 Route::post('/purchase', [GuestOrderController::class, 'store']);
